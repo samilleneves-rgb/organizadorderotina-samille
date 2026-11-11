@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Rotina Diária</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Biblioteca Three.js para o efeito 3D ao fundo -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <!-- Canvas para os Objetos 3D ao Fundo -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Overlay Gradiente Gradient 3D (Amarelo, Rosa, Branco) -->
+    <div class="gradient-overlay"></div>
+
+    <!-- Conteúdo Principal -->
+    <div class="app-container">
+        <header class="header">
+            <h1>Organizador de Rotina Diária</h1>
+            <p>Gerencie seus horários e atividades com eficiência</p>
+        </header>
+
+        <!-- Grade de Cards de Rotina -->
+        <main class="cards-grid">
+            
+            <!-- Card 1: Estudos -->
+            <article class="card" onclick="openModal('modal-estudos')">
+                <div class="card-icon">📚</div>
+                <h3>Estudos</h3>
+                <span class="time-badge">08:00 - 11:30</span>
+                <p>Foco no desenvolvimento pessoal e acadêmico...</p>
+                <div class="card-actions">
+                    <button class="btn btn-secondary">Ver Resumo</button>
+                    <a href="estudos.html" class="btn btn-primary" onclick="event.stopPropagation()">Abrir Página</a>
+                </div>
+            </article>
+
+            <!-- Card 2: Trabalho -->
+            <article class="card" onclick="openModal('modal-trabalho')">
+                <div class="card-icon">💻</div>
+                <h3>Trabalho</h3>
+                <span class="time-badge">13:00 - 17:00</span>
+                <p>Projetos, reuniões e execução de tarefas...</p>
+                <div class="card-actions">
+                    <button class="btn btn-secondary">Ver Resumo</button>
+                    <a href="trabalho.html" class="btn btn-primary" onclick="event.stopPropagation()">Abrir Página</a>
+                </div>
+            </article>
+
+            <!-- Card 3: Passear no Parque -->
+            <article class="card" onclick="openModal('modal-parque')">
+                <div class="card-icon">🌳</div>
+                <h3>Passear no Parque</h3>
+                <span class="time-badge">17:30 - 18:30</span>
+                <p>Caminhada ao ar livre para relaxar e recarregar...</p>
+                <div class="card-actions">
+                    <button class="btn btn-secondary">Ver Resumo</button>
+                    <a href="parque.html" class="btn btn-primary" onclick="event.stopPropagation()">Abrir Página</a>
+                </div>
+            </article>
+
+            <!-- Card 4: Jogar Vôlei -->
+            <article class="card" onclick="openModal('modal-volei')">
+                <div class="card-icon">🏐</div>
+                <h3>Jogar Vôlei</h3>
+                <span class="time-badge">19:00 - 20:30</span>
+                <p>Prática de esporte coletivo, treino e diversão...</p>
+                <div class="card-actions">
+                    <button class="btn btn-secondary">Ver Resumo</button>
+                    <a href="volei.html" class="btn btn-primary" onclick="event.stopPropagation()">Abrir Página</a>
+                </div>
+            </article>
+
+            <!-- Card 5: Ir para a Academia -->
+            <article class="card" onclick="openModal('modal-academia')">
+                <div class="card-icon">🏋️‍♂️</div>
+                <h3>Academia</h3>
+                <span class="time-badge">21:00 - 22:15</span>
+                <p>Treino de musculação e condicionamento físico...</p>
+                <div class="card-actions">
+                    <button class="btn btn-secondary">Ver Resumo</button>
+                    <a href="academia.html" class="btn btn-primary" onclick="event.stopPropagation()">Abrir Página</a>
+                </div>
+            </article>
+
+        </main>
+    </div>
+
+    <!-- Modais de Informações -->
+    <div id="modal-estudos" class="modal-backdrop" onclick="closeModalOnOutsideClick(event, 'modal-estudos')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-estudos')">&times;</span>
+            <h2>📚 Rotina de Estudos</h2>
+            <p><strong>Horário:</strong> 08:00 às 11:30</p>
+            <p><strong>Metas diárias:</strong> Leitura de artigos técnicos, resolução de exercícios e prática de programação.</p>
+            <p><strong>Dica de Produtividade:</strong> Use a técnica Pomodoro (25 minutos de foco por 5 de descanso).</p>
+            <a href="estudos.html" class="modal-nav-btn">Ir para a página detalhada →</a>
+        </div>
+    </div>
+
+    <div id="modal-trabalho" class="modal-backdrop" onclick="closeModalOnOutsideClick(event, 'modal-trabalho')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-trabalho')">&times;</span>
+            <h2>💻 Rotina de Trabalho</h2>
+            <p><strong>Horário:</strong> 13:00 às 17:00</p>
+            <p><strong>Foco:</strong> Cumprimento de prazos, reuniões com equipe e atendimento a demandas priorizadas.</p>
+            <a href="trabalho.html" class="modal-nav-btn">Ir para a página detalhada →</a>
+        </div>
+    </div>
+
+    <div id="modal-parque" class="modal-backdrop" onclick="closeModalOnOutsideClick(event, 'modal-parque')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-parque')">&times;</span>
+            <h2>🌳 Passeio no Parque</h2>
+            <p><strong>Horário:</strong> 17:30 às 18:30</p>
+            <p><strong>Foco:</strong> Desconexão de telas, respiração profunda e caminhada em ritmo leve.</p>
+            <a href="parque.html" class="modal-nav-btn">Ir para a página detalhada →</a>
+        </div>
+    </div>
+
+    <div id="modal-volei" class="modal-backdrop" onclick="closeModalOnOutsideClick(event, 'modal-volei')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-volei')">&times;</span>
+            <h2>🏐 Jogar Vôlei</h2>
+            <p><strong>Horário:</strong> 19:00 às 20:30</p>
+            <p><strong>Foco:</strong> Trabalho em equipe, agilidade, saques e cortadas no treino.</p>
+            <a href="volei.html" class="modal-nav-btn">Ir para a página detalhada →</a>
+        </div>
+    </div>
+
+    <div id="modal-academia" class="modal-backdrop" onclick="closeModalOnOutsideClick(event, 'modal-academia')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-academia')">&times;</span>
+            <h2>🏋️‍♂️ Treino na Academia</h2>
+            <p><strong>Horário:</strong> 21:00 às 22:15</p>
+            <p><strong>Foco:</strong> Musculação, hipertrofia e hidratação constante durante as séries.</p>
+            <a href="academia.html" class="modal-nav-btn">Ir para a página detalhada →</a>
+        </div>
+    </div>
+
+    <!-- JavaScript Integrado -->
+    <script>
+        /* FUNÇÕES DE MODAL */
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function closeModalOnOutsideClick(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+
+        /* CONFIGURAÇÃO DO SCENE 3D COM THREE.JS */
+        const canvas = document.getElementById('bg-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Luzes 3D
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const pointLight1 = new THREE.PointLight(0xffe600, 1.5, 100);
+        pointLight1.position.set(10, 10, 10);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xff007f, 1.5, 100);
+        pointLight2.position.set(-10, -10, -10);
+        scene.add(pointLight2);
+
+        // Criando Objetos 3D Voando no Fundo
+        const numObjects = 35;
+        const objects = [];
+
+        const geometries = [
+            new THREE.IcosahedronGeometry(1.2, 0),
+            new THREE.TorusGeometry(1, 0.3, 16, 100),
+            new THREE.OctahedronGeometry(1.2, 0),
+            new THREE.ConeGeometry(0.8, 1.8, 16)
+        ];
+
+        // Materiais Refletivos em Degradê / Cores Pedidas (Amarelo, Rosa, Branco)
+        const materials = [
+            new THREE.MeshStandardMaterial({ color: 0xffeb3b, roughness: 0.2, metalness: 0.5 }), // Amarelo
+            new THREE.MeshStandardMaterial({ color: 0xff1493, roughness: 0.2, metalness: 0.5 }), // Rosa
+            new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1, metalness: 0.8 })  // Branco
+        ];
+
+        for (let i = 0; i < numObjects; i++) {
+            const geom = geometries[Math.floor(Math.random() * geometries.length)];
+            const mat = materials[Math.floor(Math.random() * materials.length)];
+            const mesh = new THREE.Mesh(geom, mat);
+
+            mesh.position.x = (Math.random() - 0.5) * 30;
+            mesh.position.y = (Math.random() - 0.5) * 30;
+            mesh.position.z = (Math.random() - 0.5) * 20 - 5;
+
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+
+            const scale = Math.random() * 0.8 + 0.4;
+            mesh.scale.set(scale, scale, scale);
+
+            // Velocidades de Flutuação e Rotação Customizadas
+            mesh.userData = {
+                rotSpeedX: (Math.random() - 0.5) * 0.015,
+                rotSpeedY: (Math.random() - 0.5) * 0.015,
+                floatSpeed: (Math.random() - 0.5) * 0.008,
+                initialY: mesh.position.y
+            };
+
+            scene.add(mesh);
+            objects.push(mesh);
+        }
+
+        camera.position.z = 15;
+
+        // Loop de Animação 3D
+        let clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+
+            objects.forEach((obj) => {
+                obj.rotation.x += obj.userData.rotSpeedX;
+                obj.rotation.y += obj.userData.rotSpeedY;
+                obj.position.y = obj.userData.initialY + Math.sin(elapsedTime + obj.position.x) * 0.8;
+            });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Redimensionamento responsivo
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
